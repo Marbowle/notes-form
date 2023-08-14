@@ -6,12 +6,8 @@ namespace App;
 
 require_once("src/Debug/debug.php");
 
-if(!empty($_GET['action']))
-{
-    $action = $_GET['action'];
-}else{
-    $action = null;
-}
+//Jeśli istnieje ta zmienna to weź wartość która jest pod kluczem i przypisz jeśli nie to NULL
+$action = $_GET['action'] ?? null;
 
 ?>
 <!DOCTYPE html>
@@ -29,22 +25,22 @@ if(!empty($_GET['action']))
             <div class="menu">
             <ul>
                 <li>
-                    <a href="/">Lista notatek</a>
+                    <a href="./">Lista notatek</a>
                 </li>
                 <li>
-                    <a href="/?action=create">Nowa notatka</a>
+                    <a href="./?action=create">Nowa notatka</a>
                 </li>
             </ul>
         </div>
         <div>
-            <?php
-                if($action === 'create'):
-                    echo 'Nowa notatka';
-                else:
-                    echo 'Lista notatek';
-                endif;
-                var_dump($action);
-            ?>
+            <?php if($action === 'create'): ?>
+                    <h3>Nowa notatka</h3>
+                <?php echo htmlentities($action) ?>
+            <?php else: ?>
+                    <h4>Lista notatek</h4>
+                <?php htmlentities($action ?? '') ?>
+                <?php endif;?>
+            
         </div>
     </div>
     <div class="footer">
