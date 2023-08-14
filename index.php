@@ -6,7 +6,36 @@ namespace App;
 
 require_once("src/Debug/debug.php");
 
-$test = 'test';
 
-dump($test);
-dump(4334345);
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje notatki</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Moje notatki</h1>
+    </div>
+        <div class="container">
+            <div class="menu">
+            <ul>
+                <li>
+                    <a href="/">Lista notatek</a>
+                </li>
+                <li>
+                    <a href="/?action="create">Nowa notatka</a>
+                </li>
+            </ul>
+        </div>
+        <div>Treść</div>
+    </div>
+    <div class="footer">
+
+    </div>
+</body>
+</html>
