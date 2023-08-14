@@ -1,26 +1,12 @@
 <?php
 
-//echo "witaj świecie";
+declare(strict_types=1);
+
+namespace App;
+
+require_once("src/Debug/debug.php");
 
 $test = 'test';
 
-
-function dump($data)
-{
-
-    echo '<div 
-        style="
-    background: yellow;
-    text: pink;
-    display: inline-block;
-    padding: 0 10px;
-    border: 1px solid pink;
-    "
->
-<pre>';
-print_r($data);
-echo '</pre>
-</div>';
-}
-
 dump($test);
+dump(4334345);
