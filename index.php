@@ -6,8 +6,12 @@ namespace App;
 
 require_once("src/Debug/debug.php");
 
-
-
+if(!empty($_GET['action']))
+{
+    $action = $_GET['action'];
+}else{
+    $action = null;
+}
 
 ?>
 <!DOCTYPE html>
@@ -28,11 +32,20 @@ require_once("src/Debug/debug.php");
                     <a href="/">Lista notatek</a>
                 </li>
                 <li>
-                    <a href="/?action="create">Nowa notatka</a>
+                    <a href="/?action=create">Nowa notatka</a>
                 </li>
             </ul>
         </div>
-        <div>Treść</div>
+        <div>
+            <?php
+                if($action === 'create'):
+                    echo 'Nowa notatka';
+                else:
+                    echo 'Lista notatek';
+                endif;
+                var_dump($action);
+            ?>
+        </div>
     </div>
     <div class="footer">
 
