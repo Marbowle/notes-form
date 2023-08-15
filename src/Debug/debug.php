@@ -8,7 +8,8 @@ ini_set('display_errors', '1');
 function dump($data)
 {
 
-    echo '<div 
+    echo '
+    <br/><div 
         style="
     background: yellow;
     text: pink;
@@ -21,5 +22,5 @@ function dump($data)
 print_r($data);
 echo '</pre>
 </div>
-</br>';
+<b/r>';
 }
