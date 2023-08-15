@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,13 +22,7 @@
         </div>
         <div>
                <?php
-                    if($page ==='create')
-                    {
-                        include_once("templates/Pages/create.php");
-                    }else
-                    {
-                        include_once("templates/Pages/list.php");
-                    }
+                        require_once("templates/Pages/$page.php");
                ?>
         </div>
     </div>
