@@ -10,36 +10,34 @@ class Controller
 {
     private const DEFAULT_ACTION = 'list';
     
-    private array $getData;
-    private array $postData;
+    private array $request;
+
+    private View $view;
     
-    public function __construct(array $getData, array $postData)
+    public function __construct(array $request)
     {
-        $this->getData = $getData;
-        $this->postData = $postData;
+        $this->request = $request;
+        $this->view = new View();
     }
 
 
     public function run(): void
     {
-        $action = $this->getData['action'] ?? self::DEFAULT_ACTION;
-        
-        $view = new View();
-
         $viewParams = [];
         
-        switch($action)
+        switch($this->action())
         {
             case 'create': 
                 $page = 'create';
                 $created = false;
 
-                if(!empty($this->postData))
+                $data = $this->getRequestPost();
+                if(!empty($data))
                 {
                     $created = true;
                     $viewParams = [
-                        'title' => $this->postData['title'],
-                        'description' => $this->postData['description'],
+                        'title' => $data['title'],
+                        'description' => $data['description'],
                         ];
                 } 
                 $viewParams['created'] = $created; 
@@ -51,10 +49,26 @@ class Controller
                 ];
             break;
             default: 
-                $page === 'list';
+                $page = 'list';
                 $viewParams['resultList'] = "Wyświetlamy notatki";
             break;
         }
-        $view->render($action, $viewParams ); 
+
+        $this->view->render($page, $viewParams ); 
+    }
+     private function action(): string
+    {
+        $data = $this->getRequestGet();
+        return  $data['action'] ?? self::DEFAULT_ACTION;
+    }
+
+    private function getRequestPost(): array 
+    {
+        return $this->request['post'] ?? [];
+    }
+
+    private function getRequestGet(): array 
+    {
+        return $this->request['get'] ?? [];
     }
 }
