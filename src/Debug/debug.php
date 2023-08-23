@@ -15,12 +15,12 @@ function dump($data)
     text: pink;
     display: inline-block;
     padding: 0 10px;
-    border: 1px solid pink;
+    border: 1px dashed pink;
     "
 >
 <pre>';
 print_r($data);
 echo '</pre>
 </div>
-<b/r>';
+<br/>';
 }
