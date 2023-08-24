@@ -5,17 +5,22 @@ declare(strict_types=1);
 namespace App;
 
 require_once("src/Debug/debug.php");
-require_once('src/Controller.php');
+require_once("src/Controller.php");
 
-error_reporting(0); // wyświetla wszystkie błedy
-ini_set('display_errors', '0');
+$configuration = require_once("config/config.php");
 
 $request = [
     'get' => $_GET,
     'post'=> $_POST
 ];
 
-(new Controller($request))->run();
+try {
+    Controller::initConfiguration($configuration);
+    (new Controller($request))->run();
+}catch (Throwable $e){
+    echo "Wystaił";
+}
+
 
 
 
