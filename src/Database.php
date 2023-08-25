@@ -30,7 +30,6 @@ class Database
     {
         try {
             echo 'Tworzymy notatke';
-            dump($data);
             
             $title = $this->conn->quote($data['title']);
             $decsrpition = $this->conn->quote($data['description']);
@@ -47,6 +46,18 @@ class Database
         }
     }
     
+    public function getNotes(): array
+    {
+        $notes = [];
+
+        $query = "SELECT * FROM notes  ";
+        
+        $result = $this->conn->query($query);
+        
+        $notes = $result->fetchALL(PDO::FETCH_ASSOC);
+
+        return $notes;
+    }
     
     private function databaseConnection(array $config): void
     {
